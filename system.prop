@@ -28,6 +28,7 @@ bluetooth.hfp.client=1
 qcom.bluetooth.soc=rome
 ro.bluetooth.a4wp=true
 ro.bluetooth.wipower=true
+bluetooth.enable_timeout_ms=12000	
 
 # Camera
 persist.camera.HAL3.enabled=0
@@ -53,15 +54,16 @@ persist.dpm.feature=7
 persist.env.fastdorm.enabled=true
 persist.sys.dpmd.nsrm=3
 
-# Debug logging for DPM & CNE can be enabled via:
-# Push libdpmlog.so to system/vendor/lib|64
-#persist.dpm.nsrm.bkg.evt=3955
-#persist.dpm.loglevel=7825
+# Network data
+ro.use_data_netmgrd=true
+persist.data.netmgrd.qos.enable=true
+persist.data.mode=concurrent
+ro.data.large_tcp_window_size=true
 
 # Dex2oat limits
-dalvik.vm.boot-dex2oat-threads=4
-dalvik.vm.dex2oat-threads=2
-dalvik.vm.image-dex2oat-threads=4
+dalvik.vm.boot-dex2oat-threads=12
+dalvik.vm.dex2oat-threads=8
+dalvik.vm.image-dex2oat-threads=12
 
 # GPS
 persist.gps.qc_nlp_in_use=1
@@ -71,12 +73,14 @@ ro.pip.gated=0
 
 # Graphics
 persist.hwc.mdpcomp.enable=true
-dalvik.vm.heapsize=36m
 ro.qualcomm.cabl=0
 ro.sf.lcd_density=480
 ro.opengles.version=196610
 
-# QC vendor extension
+# Time services
+persist.timed.enable=true	
+
+# Perf
 ro.vendor.extension_library=libqti-perfd-client.so
 ro.frp.pst=/dev/block/bootdevice/by-name/config
 drm.service.enabled=true
@@ -103,6 +107,8 @@ persist.radio.sw_mbn_update=0
 persist.radio.start_ota_daemon=1
 persist.radio.rat_on=combine
 persist.data.qmi.adb_logmask=0
+ro.ril.enable.amr.wideband=1		
+ro.telephony.sim_unlocked=1	
 
 # Sensors
 ro.qc.sdk.sensors.gestures=true
@@ -111,6 +117,39 @@ ro.qc.sdk.camera.facialproc=false
 
 # Storage
 ro.sys.sdcardfs=true
+
+# Tethering
+net.tethering.noprovisioning=true
+
+# Wifi		
+persist.data.iwlan.enable=true
+
+
+#Custom Tweaks
+wifi.supplicant_scan_interval=180
+pm.sleep_mode=1
+ro.ril.disable.power.collapse=0
+ro.telephony.call_ring.delay=0
+ring.delay=0
+
+#Higher Fling velocities
+ro.min.fling_velocity=160		
+ro.max.fling_velocity=20000
+
+# OnePlus 2-specific things (OOS3)		
+dev.pm.dyn_samplingrate=1		
+debug.sf.hw=1		
+debug.egl.hw=1		
+persist.mdpcomp.4k2kSplit=1		
+persist.hwc.mdpcomp.maxpermixer=5		
+persist.mdpcomp_perfhint=60		
+mmp.enable.3g2=true		
+ro.fm.transmitter=false		
+persist.audio.DiracEnable=true		
+persist.audio.DiracHeadset=2		
+persist.dirac.acs.controller=qem		
+persist.radio.custom_ecc=1		
+mm.enable.qcom_parser=3253107
 
 # Time services
 persist.timed.enable=true
